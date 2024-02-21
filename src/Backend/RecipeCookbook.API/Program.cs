@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using RecipeCookbook.Infrastructure.Migrations;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContext") ?? throw new InvalidOperationException("Connection string 'SalesWebMvcContext' not found.")));
 
 // Add services to the container.
 
